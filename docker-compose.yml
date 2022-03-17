@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  proxy:
+    image: $USER/l2tp-ipsec-http-proxy
+    build: .
+    init: true
+    restart: unless-stopped
+    cap_add:
+      - SYSLOG
+      - NET_ADMIN
+    devices:
+      - /dev/ppp
+    ports:
+      - 8118:8118/tcp
+    secrets:
+      - vpn.params
+    environment:
+      TZ: Asia/Tokyo
+
+secrets:
+  vpn.params:
+    file: ./vpn.params
