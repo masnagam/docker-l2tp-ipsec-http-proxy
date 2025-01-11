@@ -8,5 +8,7 @@ debug 4096
 debug 8192
 EOF
 
+ln -sf /etc/privoxy/templates /app/
+
 echo "Starting privoxy..."
 /usr/sbin/privoxy --no-daemon /app/config
